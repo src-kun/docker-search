@@ -22,12 +22,12 @@ def request(url):
 #根据用户名搜索
 def search_for_repo_name_space(repo_name_space, pagesize = 2000):
 	res_json = request(search_repo_url%(repo_name_space, pagesize))
-	print ("%-10s %-10s %-10s"%("number", "repoId", "repoName"))
+	print ("%-10s %-10s %-10s %-10s"%("number", "repoId", "downloads", "repoName"))
 	i = 0
 	for res in res_json['data']['data']:
 		if res.has_key('repoNamespace') and (res['repoNamespace'] == repo_name_space):
 			i += 1
-			print ("%-10s %-10s %-10s"%(i, res['repoId'], res['repoNamespace'] + '/' + res['repoName']))
+			print ("%-10s %-10s %-10s %-10s"%(i, res['repoId'], res['downloads'], res['repoNamespace'] + '/' + res['repoName']))
 		#elif res['repoName'] == repo_name_space:
 		#	print ("%-10s %-10s %-10s"%(i, res['repoId'], res['repoName']))
 
